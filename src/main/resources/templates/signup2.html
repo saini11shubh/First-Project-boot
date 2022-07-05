@@ -32,10 +32,11 @@
 							<!-- name field -->
 							<div class="form-group">
 								<label for="name_field">Your Name</label> <input type="text"
-									name="name" class="form-control" id="name_field"									
+									name="name" class="form-control" id="name_field" 
+									th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
 									aria-describedby="NameHelp" placeholder="Enter Name"
-									required="required" th:value="${user.name}" />									
-								<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="'error'"></p>
+									required="required" th:value="${user.name}" />
+									<div th:class="invalid-feedback" th:each="e:${fields.error('name')}" th:text="${e}"></div>
 							</div>
 
 							<!-- email field -->
@@ -43,8 +44,7 @@
 								<label for="email_field">Your Email</label> <input type="email"
 									name="email" class="form-control" id="email_field"
 									aria-describedby="EmailHelp" placeholder="Enter Email"
-									required="required" th:value="${user.email}" />							
-								<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="'error'"></p>
+									required="required" th:value="${user.email}" />
 							</div>
 
 							<!-- Password field -->
@@ -53,13 +53,12 @@
 									type="password" class="form-control" name="password"
 									id="password_field" aria-describedby="PasswordHelp"
 									placeholder="Enter here" required="required" />
-									<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="'error'"></p>
 							</div>
  
 							<!-- User about field -->
 							<div class="form-group">
 								<textarea placeholder="Enter something yourself" rows="10"
-									class="form-control" name="about" th:text="${user.about}"></textarea>
+									class="form-control" name="about" th:value="${user.about}"></textarea>
 							</div>
 
 							<!-- terms and condition agreement -->
@@ -73,10 +72,7 @@
 								<button type="submit" class="btn bg-primary text-white">Submit</button>
 								<button type="reset" class="btn bg-primary text-white">Reset</button>
 							</div>
-							
-							<div id="register-link" class="text-right">
-									<a href="/user/index" class="text-info">Login here</a>
-								</div>	
+
 						</form>
 					</div>
 				</div>

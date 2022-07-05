@@ -11,16 +11,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
 	private int id;
+	
+	@NotBlank(message = "Name filled is required !!")
+	@Size(min = 2, max=20,message = "min 2 and max 20 characters are allowed !!!")
 	private String name;
+	
+	@NotBlank(message = "Email filled is required !!")
 	@Column(unique = true)
 	private String email;
+	@NotBlank(message = "Password filled is required !!")
+	//@Size(min = 6, message = "min 6 characters are allowed !!!")
 	private String password;
 	private String role;
 	private boolean enabled;
@@ -105,6 +115,11 @@ public class User {
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
+				+ "]";
+	}
 	
 }
