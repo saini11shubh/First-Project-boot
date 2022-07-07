@@ -33,7 +33,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto text-uppercase">
-				<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
+				<li class="nav-item active"><a class="nav-link" th:href="@{/user/index}" >Home
 						<span class="sr-only">(current)</span>
 				</a></li>
 
@@ -49,7 +49,7 @@
 	<!-- sidebar Area -->
 	<div class="sidebar mt-5">
 			<span onclick="toggleSidebar()" class="crossBtn">&times;</span>
-		<a href="#" class="item"><i class="fa-solid fa-house"></i>Home</a> 
+		<a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>Home</a> 
 		<a href="#" class="item"><i class="fa-solid fa-users-viewfinder"></i>View Contacts</a>
 		<a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>Add Contact</a>
 		<a href="#" class="item"><i class="fa-solid fa-user"></i>Your Profile</a>
@@ -63,6 +63,13 @@
 	<!-- content area -->
 	<div class="content mt-4">
 		<i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
+		<!-- message box -->
+			<div class="container">
+				<div th:if="${session.message}" th:classappend="${'alert-'+session.message.type}" class="alert alert-success text-center" role="alert">
+				 	<span th:text="${session.message.content}"></span>
+				 </div>
+				 <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+				</div>		
 		<div th:replace="${content}"></div>
 	</div>
 	<!-- End content area -->

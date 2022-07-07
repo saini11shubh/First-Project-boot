@@ -19,8 +19,8 @@ public class Contact {
 	@Column(unique = true)
 	private String email;
 	private String phone;
-	private String image;
-	@Column(length = 1000)
+	private String profileImage;
+	@Column(length = 5000)
 	private String description;
 	
 	@ManyToOne
@@ -38,7 +38,7 @@ public class Contact {
 		this.work = work;
 		this.email = email;
 		this.phone = phone;
-		this.image = image;
+		this.profileImage = image;
 		this.description = description;
 	}
 	public int getCid() {
@@ -78,10 +78,10 @@ public class Contact {
 		this.phone = phone;
 	}
 	public String getImage() {
-		return image;
+		return profileImage;
 	}
 	public void setImage(String image) {
-		this.image = image;
+		this.profileImage = image;
 	}
 	public String getDescription() {
 		return description;
