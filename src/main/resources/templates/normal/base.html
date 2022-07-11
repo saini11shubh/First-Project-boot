@@ -33,7 +33,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto text-uppercase">
-				<li class="nav-item active"><a class="nav-link" th:href="@{/user/index}" >Home
+				<li class="nav-item active"><a class="nav-link" th:href="@{/user/index }" >Home
 						<span class="sr-only">(current)</span>
 				</a></li>
 
@@ -50,11 +50,11 @@
 	<div class="sidebar mt-5">
 			<span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 		<a th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>Home</a> 
-		<a href="#" class="item"><i class="fa-solid fa-users-viewfinder"></i>View Contacts</a>
+		<a th:href="@{/user/show-contacts/0}" class="item"><i class="fa-solid fa-users-viewfinder"></i>View Contacts</a>
 		<a th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-user-plus"></i>Add Contact</a>
-		<a href="#" class="item"><i class="fa-solid fa-user"></i>Your Profile</a>
+		<a th:href="@{/user/profile}" class="item"><i class="fa-solid fa-user"></i>Your Profile</a>
 		<a href="#" class="item"><i class="fa-solid fa-gear"></i>Setting</a>
-		<a href="#" class="item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+		<a th:href="@{/logout}" class="item" onclick="myFunction()"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		<div class="divider"></div>
 	</div>
 	<!-- End side bar Area -->
@@ -87,7 +87,28 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<
+		
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		function deleteContact(cid){
+			swal({
+				  title: "Are you sure?",
+				  text: "You want to delete this contact",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				  		window.location="/user/delete/"+cid;
+				    
+				  }
+				   else {
+				    swal("Your contact is safe!");
+				  }
+				});	
+		}
+	</script>
 	<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

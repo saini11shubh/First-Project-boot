@@ -1,16 +1,17 @@
 console.log("this is script file")
 function myFunction() {
-  window.alert("Are you sure for logout ");
+	window.alert("Are you sure for logout ");
 }
-const toggleSidebar=()=>{
-  if($(".sidebar").is(":visible")){
-      //true
-      $(".sidebar").css("display","none");
-      $(".content").css("margin-left","0%");
-  }
-  else{
-    //false
-    $(".sidebar").css("display","block");
-      $(".content").css("margin-left","20%");
-  }
+
+const toggleSidebar = () => {
+	if ($(".sidebar").is(":visible")) {
+		//true
+		$(".sidebar").css("display", "none");
+		$(".content").css("margin-left", "0%");
+	}
+	else {
+		//false
+		$(".sidebar").css("display", "block");
+		$(".content").css("margin-left", "20%");
+	}
 }
